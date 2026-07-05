@@ -7,213 +7,256 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#FCF8F8] text-gray-700 font-sans">
+<body class="bg-[#FCF8F8] text-gray-700 font-sans min-h-screen flex flex-col">
 
-    <!-- Navbar Pastel -->
-    <header class="bg-pink-100 text-pink-800 shadow-sm border-b border-pink-200 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold flex items-center gap-2">🐾 <span class="text-pink-600">Vet</span>Control</h1>
-            <nav class="space-x-2 md:space-x-4">
-                <button onclick="switchTab('mascotas-tab')" class="px-3 py-2 rounded-lg bg-white/60 hover:bg-white text-pink-700 font-medium text-sm transition border border-pink-200/50">Mascotas y Clientes</button>
-                <button onclick="switchTab('citas-tab')" class="px-3 py-2 rounded-lg bg-white/60 hover:bg-white text-pink-700 font-medium text-sm transition border border-pink-200/50">Agenda de Citas</button>
-                <button onclick="switchTab('reportes-tab')" class="bg-amber-100 text-amber-800 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-200 transition border border-amber-200">📊 Reportes</button>
-            </nav>
+    <!-- =================================================== -->
+    <!-- SCREEN 1: PANTALLA DE LOGUEO (VISTA POR DEFECTO) -->
+    <!-- =================================================== -->
+    <div id="login-screen" class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-xl border border-pink-100 max-w-sm w-full text-center space-y-6 transform transition-all">
+            <div class="text-6xl animate-bounce">🐾</div>
+            <div>
+                <h2 class="text-3xl font-extrabold text-pink-600">Vet<span class="text-gray-700">Control</span></h2>
+                <p class="text-sm text-gray-400 mt-2">Gestión Veterinaria Dulce y Eficiente</p>
+            </div>
+            
+            <hr class="border-pink-50">
+
+            <button id="btn-login" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-pink-100 text-gray-600 font-semibold py-3 px-4 rounded-2xl hover:bg-pink-50/50 hover:border-pink-200 transition-all shadow-sm">
+                <!-- Icono de Google estilizado -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.61c-.29 1.53-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.65-5.17 3.65-8.58z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.11 0-5.74-2.11-6.68-4.96H1.21v3.15C3.18 21.88 7.31 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.32 14.24A7.16 7.16 0 0 1 5 12c0-.79.13-1.57.32-2.32V6.53H1.21A11.94 11.94 0 0 0 0 12c0 1.92.45 3.74 1.21 5.47l4.11-3.23z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.18 2.12 1.21 5.47l4.11 3.23c.94-2.85 3.57-4.95 6.68-4.95z"/>
+                </svg>
+                <span>Acceder con Google</span>
+            </button>
         </div>
-    </header>
+    </div>
 
-    <main class="container mx-auto p-4 md:p-6 max-w-6xl">
-        
-        <!-- SECCIÓN: MASCOTAS Y CLIENTES -->
-        <section id="mascotas-tab" class="tab-content">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Formulario Blanco / Rosa Pastel -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 h-fit">
-                    <h2 id="form-title" class="text-xl font-bold mb-4 text-pink-700 flex items-center gap-1">✨ Registrar Mascota y Dueño</h2>
-                    <form id="pet-form" class="space-y-4">
-                        <input type="hidden" id="pet-id">
-                        
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Nombre del Dueño</label>
-                                <input type="text" id="owner" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Teléfono Dueño</label>
-                                <input type="tel" id="ownerPhone" placeholder="Ej: 3001234567" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Nombre Mascota</label>
-                                <input type="text" id="petName" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Especie</label>
-                                <input type="text" id="species" placeholder="Ej: Perro, Gato" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Raza</label>
-                                <input type="text" id="breed" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Edad (Anos)</label>
-                                <input type="number" id="age" min="0" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
-                            </div>
-                        </div>
+    <!-- =================================================== -->
+    <!-- SCREEN 2: CONTENEDOR PRINCIPAL DE LA APP (OCULTO) -->
+    <!-- =================================================== -->
+    <div id="app-screen" class="hidden flex-col flex-grow">
+        <!-- Navbar Pastel -->
+        <header class="bg-pink-100 text-pink-800 shadow-sm border-b border-pink-200 p-4">
+            <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h1 class="text-2xl font-bold flex items-center gap-2">🐾 <span class="text-pink-600">Vet</span>Control</h1>
+                
+                <!-- Navegación e Info de Perfil -->
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <nav class="space-x-1 md:space-x-2">
+                        <button onclick="switchTab('mascotas-tab')" class="px-3 py-2 rounded-lg bg-white/60 hover:bg-white text-pink-700 font-medium text-sm transition border border-pink-200/50">Mascotas y Clientes</button>
+                        <button onclick="switchTab('citas-tab')" class="px-3 py-2 rounded-lg bg-white/60 hover:bg-white text-pink-700 font-medium text-sm transition border border-pink-200/50">Agenda de Citas</button>
+                        <button onclick="switchTab('reportes-tab')" class="bg-amber-100 text-amber-800 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-200 transition border border-amber-200">📊 Reportes</button>
+                    </nav>
 
-                        <hr class="my-4 border-pink-100">
-                        <h3 class="text-sm font-bold text-pink-600 mb-2">📋 Historial Médico Inicial (Opcional)</h3>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-[11px] font-semibold text-gray-400 uppercase">Fecha Cita</label>
-                                <input type="date" id="historyDate" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-gray-400 uppercase">Motivo</label>
-                                <input type="text" id="historyReason" placeholder="Control, Vacuna" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 uppercase">Diagnóstico</label>
-                            <input type="text" id="historyDiag" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 uppercase">Tratamiento</label>
-                            <input type="text" id="historyTreat" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
-                        </div>
+                    <div class="h-6 w-[1px] bg-pink-300 hidden sm:block"></div>
 
-                        <div class="flex gap-2 pt-2">
-                            <button type="submit" class="w-full bg-pink-200 text-pink-800 p-2.5 rounded-xl font-semibold hover:bg-pink-300 transition shadow-sm shadow-pink-100">Guardar</button>
-                            <button type="button" id="btn-cancelar-pet" class="w-full bg-gray-100 text-gray-500 p-2.5 rounded-xl font-medium hover:bg-gray-200 transition">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Tabla de Mascotas -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
-                    <h2 class="text-xl font-bold mb-4 text-pink-700">🌸 Pacientes Registrados</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full table-auto text-left border-collapse">
-                            <thead>
-                                <tr class="bg-pink-50/50 text-pink-800 text-xs font-bold uppercase tracking-wider border-b border-pink-100">
-                                    <th class="p-3">Mascota (Especie)</th>
-                                    <th class="p-3">Dueño / Contacto</th>
-                                    <th class="p-3">Historial Reciente</th>
-                                    <th class="p-3 text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="pets-table-body" class="divide-y divide-pink-50">
-                                <tr><td colspan="4" class="text-center p-4 text-gray-400 text-sm">Cargando pacientes desde la nube...</td></tr>
-                            </tbody>
-                        </table>
+                    <!-- Botón Perfil / Cerrar Sesión -->
+                    <div class="flex items-center gap-2 bg-white/40 p-1 pl-3 pr-2 rounded-xl border border-pink-200/40">
+                        <span id="user-display-name" class="text-xs font-semibold text-pink-900">...</span>
+                        <button id="btn-logout" class="bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-lg transition border border-red-100">Salir</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- SECCIÓN: AGENDAR CITAS -->
-        <section id="citas-tab" class="tab-content hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Formulario Citas -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 h-fit">
-                    <h2 class="text-xl font-bold mb-4 text-pink-700 flex items-center gap-1">📅 Agendar Nueva Cita</h2>
-                    <form id="appointment-form" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Seleccionar Mascota</label>
-                            <select id="app-pet-select" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
-                                <option value="">Cargando...</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Fecha</label>
-                                <input type="date" id="app-date" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+        <!-- Contenido de las pestañas -->
+        <main class="container mx-auto p-4 md:p-6 max-w-6xl flex-grow">
+            <!-- PESTAÑA: MASCOTAS -->
+            <section id="mascotas-tab" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Formulario -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 h-fit">
+                        <h2 id="form-title" class="text-xl font-bold mb-4 text-pink-700 flex items-center gap-1">✨ Registrar Mascota y Dueño</h2>
+                        <form id="pet-form" class="space-y-4">
+                            <input type="hidden" id="pet-id">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Nombre del Dueño</label>
+                                    <input type="text" id="owner" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Teléfono Dueño</label>
+                                    <input type="tel" id="ownerPhone" placeholder="Ej: 3001234567" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Nombre Mascota</label>
+                                    <input type="text" id="petName" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Especie</label>
+                                    <input type="text" id="species" placeholder="Ej: Perro, Gato" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Raza</label>
+                                    <input type="text" id="breed" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Edad (Años)</label>
+                                    <input type="number" id="age" min="0" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition">
+                                </div>
+                            </div>
+
+                            <hr class="my-4 border-pink-100">
+                            <h3 class="text-sm font-bold text-pink-600 mb-2">📋 Historial Médico Inicial (Opcional)</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-gray-400 uppercase">Fecha Cita</label>
+                                    <input type="date" id="historyDate" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-gray-400 uppercase">Motivo</label>
+                                    <input type="text" id="historyReason" placeholder="Control, Vacuna" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
+                                </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Costo Consulta ($)</label>
-                                <input type="number" id="app-cost" min="0" value="30000" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                                <label class="block text-[11px] font-semibold text-gray-400 uppercase">Diagnóstico</label>
+                                <input type="text" id="historyDiag" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
                             </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 uppercase">Tratamiento</label>
+                                <input type="text" id="historyTreat" class="w-full mt-1 p-2 border border-pink-100 bg-pink-50/20 text-xs rounded-xl">
+                            </div>
+
+                            <div class="flex gap-2 pt-2">
+                                <button type="submit" class="w-full bg-pink-200 text-pink-800 p-2.5 rounded-xl font-semibold hover:bg-pink-300 transition shadow-sm shadow-pink-100">Guardar</button>
+                                <button type="button" id="btn-cancelar-pet" class="w-full bg-gray-100 text-gray-500 p-2.5 rounded-xl font-medium hover:bg-gray-200 transition">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Tabla de Mascotas -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+                        <h2 class="text-xl font-bold mb-4 text-pink-700">🌸 Pacientes Registrados</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full table-auto text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-pink-50/50 text-pink-800 text-xs font-bold uppercase tracking-wider border-b border-pink-100">
+                                        <th class="p-3">Mascota (Especie)</th>
+                                        <th class="p-3">Dueño / Contacto</th>
+                                        <th class="p-3">Historial Reciente</th>
+                                        <th class="p-3 text-right">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pets-table-body" class="divide-y divide-pink-50">
+                                    <tr><td colspan="4" class="text-center p-4 text-gray-400 text-sm">Cargando pacientes desde la nube...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Motivo / Tipo de Cita</label>
-                            <input type="text" id="app-reason" placeholder="Ej: Vacunación Anual" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                    </div>
+                </div>
+            </section>
+
+            <!-- PESTAÑA: AGENDAR CITAS -->
+            <section id="citas-tab" class="tab-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Formulario Citas -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 h-fit">
+                        <h2 class="text-xl font-bold mb-4 text-pink-700 flex items-center gap-1">📅 Agendar Nueva Cita</h2>
+                        <form id="appointment-form" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Seleccionar Mascota</label>
+                                <select id="app-pet-select" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                                    <option value="">Cargando...</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Fecha</label>
+                                    <input type="date" id="app-date" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Costo Consulta ($)</label>
+                                    <input type="number" id="app-cost" min="0" value="30000" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Motivo / Tipo de Cita</label>
+                                <input type="text" id="app-reason" placeholder="Ej: Vacunación Anual" required class="w-full mt-1 p-2 border border-pink-100 rounded-xl bg-pink-50/30">
+                            </div>
+                            <button type="submit" class="w-full bg-pink-200 text-pink-800 p-2.5 rounded-xl font-semibold hover:bg-pink-300 transition shadow-sm">Agendar Cita</button>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Citas -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+                        <h2 class="text-xl font-bold mb-4 text-pink-700">🗓️ Próximas Citas</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full table-auto text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-pink-50/50 text-pink-800 text-xs font-bold uppercase tracking-wider border-b border-pink-100">
+                                        <th class="p-3">Fecha</th>
+                                        <th class="p-3">Mascota / Dueño</th>
+                                        <th class="p-3">Motivo</th>
+                                        <th class="p-3">Costo</th>
+                                        <th class="p-3 text-right">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointments-table-body" class="divide-y divide-pink-50">
+                                    <tr><td colspan="5" class="text-center p-4 text-gray-400 text-sm">Cargando agenda...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <button type="submit" class="w-full bg-pink-200 text-pink-800 p-2.5 rounded-xl font-semibold hover:bg-pink-300 transition shadow-sm">Agendar Cita</button>
-                    </form>
-                </div>
-
-                <!-- Lista de Citas -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
-                    <h2 class="text-xl font-bold mb-4 text-pink-700">🗓️ Próximas Citas</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full table-auto text-left border-collapse">
-                            <thead>
-                                <tr class="bg-pink-50/50 text-pink-800 text-xs font-bold uppercase tracking-wider border-b border-pink-100">
-                                    <th class="p-3">Fecha</th>
-                                    <th class="p-3">Mascota / Dueño</th>
-                                    <th class="p-3">Motivo</th>
-                                    <th class="p-3">Costo</th>
-                                    <th class="p-3 text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="appointments-table-body" class="divide-y divide-pink-50">
-                                <tr><td colspan="5" class="text-center p-4 text-gray-400 text-sm">Cargando agenda...</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SECCIÓN: REPORTES -->
-        <section id="reportes-tab" class="tab-content hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 mb-6">
-                <h2 class="text-2xl font-bold text-pink-800 mb-6 flex items-center gap-2">📊 Reporte General Pastel</h2>
+            <!-- PESTAÑA: REPORTES -->
+            <section id="reportes-tab" class="tab-content hidden">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-pink-100 mb-6">
+                    <h2 class="text-2xl font-bold text-pink-800 mb-6 flex items-center gap-2">📊 Reporte General Pastel</h2>
 
-                <!-- KPI Cards Pastel -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-blue-50/60 border border-blue-200 p-5 rounded-2xl shadow-sm">
-                        <p class="text-xs font-bold text-blue-700 uppercase tracking-wider">Citas del Día de Hoy</p>
-                        <p id="kpi-citas-hoy" class="text-3xl font-extrabold text-blue-900 mt-1">0</p>
+                    <!-- KPI Cards Pastel -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-50/60 border border-blue-200 p-5 rounded-2xl shadow-sm">
+                            <p class="text-xs font-bold text-blue-700 uppercase tracking-wider">Citas del Día de Hoy</p>
+                            <p id="kpi-citas-hoy" class="text-3xl font-extrabold text-blue-900 mt-1">0</p>
+                        </div>
+                        <div class="bg-amber-50/70 border border-amber-200 p-5 rounded-2xl shadow-sm">
+                            <p class="text-xs font-bold text-amber-700 uppercase tracking-wider">Mascotas por Vacunar</p>
+                            <p id="kpi-por-vacunar" class="text-3xl font-extrabold text-amber-900 mt-1">0</p>
+                        </div>
+                        <div class="bg-purple-50/60 border border-purple-200 p-5 rounded-2xl shadow-sm">
+                            <p class="text-xs font-bold text-purple-700 uppercase tracking-wider">Total Ingresos Consultas</p>
+                            <p id="kpi-ingresos" class="text-3xl font-extrabold text-purple-900 mt-1">$0</p>
+                        </div>
                     </div>
-                    <div class="bg-amber-50/70 border border-amber-200 p-5 rounded-2xl shadow-sm">
-                        <p class="text-xs font-bold text-amber-700 uppercase tracking-wider">Mascotas por Vacunar</p>
-                        <p id="kpi-por-vacunar" class="text-3xl font-extrabold text-amber-900 mt-1">0</p>
-                    </div>
-                    <div class="bg-purple-50/60 border border-purple-200 p-5 rounded-2xl shadow-sm">
-                        <p class="text-xs font-bold text-purple-700 uppercase tracking-wider">Total Ingresos Consultas</p>
-                        <p id="kpi-ingresos" class="text-3xl font-extrabold text-purple-900 mt-1">$0</p>
+
+                    <!-- Detalle de Listas del Reporte -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Lista Citas del Día -->
+                        <div class="border border-pink-100 rounded-2xl p-4 bg-pink-50/10">
+                            <h3 class="font-bold text-pink-800 mb-3 border-b border-pink-100 pb-2 flex justify-between">
+                                <span>📅 Detalle: Citas de Hoy</span>
+                                <span id="fecha-actual-label" class="text-xs text-gray-400 font-normal self-center"></span>
+                            </h3>
+                            <ul id="reporte-citas-lista" class="space-y-2 max-h-60 overflow-y-auto"></ul>
+                        </div>
+
+                        <!-- Lista Mascotas por vacunar -->
+                        <div class="border border-pink-100 rounded-2xl p-4 bg-pink-50/10">
+                            <h3 class="font-bold text-pink-800 mb-3 border-b border-pink-100 pb-2">💉 Detalle: Mascotas por Vacunar</h3>
+                            <ul id="reporte-vacunas-lista" class="space-y-2 max-h-60 overflow-y-auto"></ul>
+                        </div>
                     </div>
                 </div>
+            </section>
+        </main>
+    </div>
 
-                <!-- Detalle de Listas del Reporte -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Lista Citas del Día -->
-                    <div class="border border-pink-100 rounded-2xl p-4 bg-pink-50/10">
-                        <h3 class="font-bold text-pink-800 mb-3 border-b border-pink-100 pb-2 flex justify-between">
-                            <span>📅 Detalle: Citas de Hoy</span>
-                            <span id="fecha-actual-label" class="text-xs text-gray-400 font-normal self-center"></span>
-                        </h3>
-                        <ul id="reporte-citas-lista" class="space-y-2 max-h-60 overflow-y-auto"></ul>
-                    </div>
-
-                    <!-- Lista Mascotas por vacunar -->
-                    <div class="border border-pink-100 rounded-2xl p-4 bg-pink-50/10">
-                        <h3 class="font-bold text-pink-800 mb-3 border-b border-pink-100 pb-2">💉 Detalle: Mascotas por Vacunar</h3>
-                        <ul id="reporte-vacunas-lista" class="space-y-2 max-h-60 overflow-y-auto"></ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- INTEGRACIÓN FIREBASE -->
+    <!-- INTEGRACIÓN FIREBASE & AUTENTICACIÓN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        // Importes necesarios para Auth de Google
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAznzBc5GHXuFAhAMCpghYkZH7fEp3Dgy8",
@@ -225,32 +268,85 @@
             measurementId: "G-V1D7LNL4Z0"
         };
 
+        // Inicializar Firebase, FireStore y Auth
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
         let localPets = [];
         let localAppointments = [];
+        let unsubscribePets = null;
+        let unsubscribeAppointments = null;
+
+        // --- SISTEMA DE LOGUEO / DESLOGUEO ---
+        const loginScreen = document.getElementById('login-screen');
+        const appScreen = document.getElementById('app-screen');
+        const userDisplayName = document.getElementById('user-display-name');
+
+        // Manejar el estado del usuario en tiempo real
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuario Logueado
+                loginScreen.classList.add('hidden');
+                appScreen.classList.remove('hidden');
+                appScreen.classList.add('flex');
+                userDisplayName.innerText = user.displayName || user.email;
+                
+                // Activar Escuchadores en tiempo real de Firestore
+                activarEscuchadoresBaseDatos();
+            } else {
+                // Usuario Deslogueado
+                appScreen.classList.add('hidden');
+                appScreen.classList.remove('flex');
+                loginScreen.classList.remove('hidden');
+                
+                // Apagar escuchadores previos para evitar fugas de memoria
+                if (unsubscribePets) unsubscribePets();
+                if (unsubscribeAppointments) unsubscribeAppointments();
+            }
+        });
+
+        // Eventos de botones login / logout
+        document.getElementById('btn-login').addEventListener('click', async () => {
+            try {
+                await signInWithPopup(auth, provider);
+            } catch (error) {
+                console.error("Error al autenticar:", error);
+                alert("Hubo un error al intentar iniciar sesión con Google.");
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            if(confirm('¿Deseas cerrar sesión?')) {
+                try { await signOut(auth); } catch (error) { console.error(error); }
+            }
+        });
+
+        // --- LÓGICA INTERNA DE LA APLICACIÓN (FIRESTORE) ---
 
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) activeTab.classList.remove('hidden');
         };
 
-        // Escuchadores Firebase
-        onSnapshot(collection(db, "pets"), (snapshot) => {
-            localPets = [];
-            snapshot.forEach(doc => { localPets.push({ id: doc.id, ...doc.data() }); });
-            renderPets();
-            updatePetDropdown();
-            generarReporte();
-        });
+        function activarEscuchadoresBaseDatos() {
+            unsubscribePets = onSnapshot(collection(db, "pets"), (snapshot) => {
+                localPets = [];
+                snapshot.forEach(doc => { localPets.push({ id: doc.id, ...doc.data() }); });
+                renderPets();
+                updatePetDropdown();
+                generarReporte();
+            }, (error) => console.error("Error cargando mascotas:", error));
 
-        onSnapshot(collection(db, "appointments"), (snapshot) => {
-            localAppointments = [];
-            snapshot.forEach(doc => { localAppointments.push({ id: doc.id, ...doc.data() }); });
-            renderAppointments();
-            generarReporte();
-        });
+            unsubscribeAppointments = onSnapshot(collection(db, "appointments"), (snapshot) => {
+                localAppointments = [];
+                snapshot.forEach(doc => { localAppointments.push({ id: doc.id, ...doc.data() }); });
+                renderAppointments();
+                generarReporte();
+            }, (error) => console.error("Error cargando citas:", error));
+        }
 
         // Guardar Mascota
         document.getElementById('pet-form').addEventListener('submit', async (e) => {
@@ -282,7 +378,8 @@
                 if (id) {
                     const petRef = doc(db, "pets", id);
                     const existingPet = localPets.find(p => p.id === id);
-                    const updatedHistory = existingPet.history ? [...existingPet.history, ...historyEntry] : historyEntry;
+                    const currentHistory = existingPet && existingPet.history ? existingPet.history : [];
+                    const updatedHistory = [...currentHistory, ...historyEntry];
                     await updateDoc(petRef, { owner, ownerPhone, petName, species, breed, age, history: updatedHistory });
                 } else {
                     await addDoc(collection(db, "pets"), { owner, ownerPhone, petName, species, breed, age, history: historyEntry });
@@ -318,6 +415,7 @@
 
         function renderPets() {
             const tbody = document.getElementById('pets-table-body');
+            if(!tbody) return;
             tbody.innerHTML = '';
             if (localPets.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="4" class="text-center p-4 text-gray-400 text-sm">No hay registros aún.</td></tr>`;
@@ -348,6 +446,7 @@
 
         function updatePetDropdown() {
             const select = document.getElementById('app-pet-select');
+            if(!select) return;
             select.innerHTML = '<option value="">-- Elige un Paciente --</option>';
             localPets.forEach(pet => {
                 select.innerHTML += `<option value="${pet.id}">${pet.petName} (Dueño: ${pet.owner})</option>`;
@@ -365,7 +464,7 @@
                 await addDoc(collection(db, "appointments"), { petId, date, cost, reason });
                 const petRef = doc(db, "pets", petId);
                 const existingPet = localPets.find(p => p.id === petId);
-                const updatedHistory = existingPet.history ? [...existingPet.history] : [];
+                const updatedHistory = existingPet && existingPet.history ? [...existingPet.history] : [];
                 updatedHistory.push({ date: date, reason: reason, diagnosis: 'Pendiente en consulta', treatment: 'Pendiente en consulta' });
                 await updateDoc(petRef, { history: updatedHistory });
                 document.getElementById('appointment-form').reset();
@@ -379,6 +478,7 @@
 
         function renderAppointments() {
             const tbody = document.getElementById('appointments-table-body');
+            if(!tbody) return;
             tbody.innerHTML = '';
             if (localAppointments.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="5" class="text-center p-4 text-gray-400 text-sm">No hay citas agendadas.</td></tr>`;
@@ -406,39 +506,46 @@
             if (dateLabel) dateLabel.innerText = `Hoy: ${hoy}`;
 
             const citasHoy = localAppointments.filter(app => app.date === hoy);
-            document.getElementById('kpi-citas-hoy').innerText = citasHoy.length;
+            const kpiCitasHoy = document.getElementById('kpi-citas-hoy');
+            if(kpiCitasHoy) kpiCitasHoy.innerText = citasHoy.length;
 
             const listaCitas = document.getElementById('reporte-citas-lista');
-            listaCitas.innerHTML = '';
-            if (citasHoy.length === 0) listaCitas.innerHTML = `<li class="text-gray-400 text-xs italic">Sin citas hoy.</li>`;
-            citasHoy.forEach(app => {
-                const pet = localPets.find(p => p.id === app.petId);
-                listaCitas.innerHTML += `
-                    <li class="bg-white p-3 rounded-xl border border-pink-100 text-sm flex justify-between items-center">
-                        <div>
-                            <span class="font-bold text-pink-900">${pet ? pet.petName : 'N/A'}</span> <span class="text-xs text-gray-500">(${pet ? pet.owner : 'N/A'})</span>
-                            <p class="text-xs text-gray-400">📞 ${pet ? pet.ownerPhone : 'S/N'} • ${app.reason}</p>
-                        </div>
-                        <span class="text-xs font-bold bg-pink-100 text-pink-800 px-2 py-1 rounded-lg">$${app.cost.toLocaleString()}</span>
-                    </li>`;
-            });
+            if(listaCitas) {
+                listaCitas.innerHTML = '';
+                if (citasHoy.length === 0) listaCitas.innerHTML = `<li class="text-gray-400 text-xs italic">Sin citas hoy.</li>`;
+                citasHoy.forEach(app => {
+                    const pet = localPets.find(p => p.id === app.petId);
+                    listaCitas.innerHTML += `
+                        <li class="bg-white p-3 rounded-xl border border-pink-100 text-sm flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-pink-900">${pet ? pet.petName : 'N/A'}</span> <span class="text-xs text-gray-500">(${pet ? pet.owner : 'N/A'})</span>
+                                <p class="text-xs text-gray-400">📞 ${pet ? pet.ownerPhone : 'S/N'} • ${app.reason}</p>
+                            </div>
+                            <span class="text-xs font-bold bg-pink-100 text-pink-800 px-2 py-1 rounded-lg">$${app.cost.toLocaleString()}</span>
+                        </li>`;
+                });
+            }
 
-            const porVacunar = localPets.filter(pet => pet.history && pet.history.some(h => h.reason.toLowerCase().includes('vacuna')));
-            document.getElementById('kpi-por-vacunar').innerText = porVacunar.length;
+            const porVacunar = localPets.filter(pet => pet.history && pet.history.some(h => h.reason && h.reason.toLowerCase().includes('vacuna')));
+            const kpiPorVacunar = document.getElementById('kpi-por-vacunar');
+            if(kpiPorVacunar) kpiPorVacunar.innerText = porVacunar.length;
 
             const listaVacunas = document.getElementById('reporte-vacunas-lista');
-            listaVacunas.innerHTML = '';
-            if (porVacunar.length === 0) listaVacunas.innerHTML = `<li class="text-gray-400 text-xs italic">Sin registros.</li>`;
-            porVacunar.forEach(pet => {
-                listaVacunas.innerHTML += `
-                    <li class="bg-white p-3 rounded-xl border border-pink-100 text-sm">
-                        <span class="font-bold text-pink-800">🐶 ${pet.petName}</span> <span class="text-xs bg-pink-50 text-pink-700 px-1 rounded"><sup>${pet.species}</sup></span>
-                        <p class="text-xs text-gray-400">Dueño: ${pet.owner} | 📞 ${pet.ownerPhone || 'S/N'}</p>
-                    </li>`;
-            });
+            if(listaVacunas) {
+                listaVacunas.innerHTML = '';
+                if (porVacunar.length === 0) listaVacunas.innerHTML = `<li class="text-gray-400 text-xs italic">Sin registros.</li>`;
+                porVacunar.forEach(pet => {
+                    listaVacunas.innerHTML += `
+                        <li class="bg-white p-3 rounded-xl border border-pink-100 text-sm">
+                            <span class="font-bold text-pink-800">🐶 ${pet.petName}</span> <span class="text-xs bg-pink-50 text-pink-700 px-1 rounded"><sup>${pet.species}</sup></span>
+                            <p class="text-xs text-gray-400">Dueño: ${pet.owner} | 📞 ${pet.ownerPhone || 'S/N'}</p>
+                        </li>`;
+                });
+            }
 
-            const total = localAppointments.reduce((sum, app) => sum + app.cost, 0);
-            document.getElementById('kpi-ingresos').innerText = `$${total.toLocaleString()}`;
+            const total = localAppointments.reduce((sum, app) => sum + (Number(app.cost) || 0), 0);
+            const kpiIngresos = document.getElementById('kpi-ingresos');
+            if(kpiIngresos) kpiIngresos.innerText = `$${total.toLocaleString()}`;
         }
     </script>
 </body>
